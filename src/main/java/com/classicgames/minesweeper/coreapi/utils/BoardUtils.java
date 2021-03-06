@@ -9,8 +9,8 @@ public final class BoardUtils {
 
     private BoardUtils() { }
 
-    public static boolean isValidAccess(int x, int y, int n, int m) {
-        return (x >= 0 && y >= 0 && x < n && y < m);
+    public static boolean isValidAccess(int row, int col, int rows, int cols) {
+        return (row >= 0 && col >= 0 && row < rows && col < cols);
     }
 
     public static UUID getUniqueUUID(Map<String, Board> data) {

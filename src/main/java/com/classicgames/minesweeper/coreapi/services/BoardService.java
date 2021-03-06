@@ -8,4 +8,5 @@ public interface BoardService {
 
     Board flagSquare(String boardId, int posX, int posY);
 
+    Board revealSquare(String boardId, int posX, int posY);
 }

@@ -10,16 +10,17 @@ public class Board {
     private String id;
     private int size;
     private int numMines;
+    private boolean happy;
     private Square[][] matrix;
 
-    public Board(String id, int size, int numMines) {
-        this.id = id;
+    public Board(int size, int numMines) {
         this.size = size;
         this.numMines = numMines;
         this.initialize();
     }
 
     private void initialize() {
+        this.happy = true;
         this.matrix = new Square[size][size];
     }
 

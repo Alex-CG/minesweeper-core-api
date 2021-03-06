@@ -9,7 +9,7 @@ public class Square {
 
     private ValueType type;
     private int value;
-    private boolean openned;
+    private boolean opened;
     private FlagType flag = FlagType.NONE;
 
     public Square(ValueType type) {

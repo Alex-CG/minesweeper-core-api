@@ -4,7 +4,7 @@ import com.classicgames.minesweeper.coreapi.entities.Board;
 
 public interface BoardRepository {
 
-    Board create(int size, int numMines);
+    Board save(Board board);
 
     Board get(String id);
 

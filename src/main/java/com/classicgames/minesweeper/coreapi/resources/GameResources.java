@@ -22,11 +22,19 @@ public class GameResources {
         return ResponseEntity.ok(board);
     }
 
-    @PatchMapping(path = "/{id}/flag/{x}/{y}")
+    @PatchMapping(path = "/{id}/flag/{row}/{col}")
     public ResponseEntity flagSquare(@PathVariable("id") String id,
-                                     @PathVariable("x") Integer x,
-                                     @PathVariable("y") Integer y) {
-        Board board = service.flagSquare(id, x, y);
+                                     @PathVariable("row") Integer row,
+                                     @PathVariable("col") Integer col) {
+        Board board = service.flagSquare(id, row, col);
+        return ResponseEntity.ok(board);
+    }
+
+    @PatchMapping(path = "/{id}/reveal/{row}/{col}")
+    public ResponseEntity revealSquare(@PathVariable("id") String id,
+                                       @PathVariable("row") Integer row,
+                                       @PathVariable("col") Integer col) {
+        Board board = service.revealSquare(id, row, col);
         return ResponseEntity.ok(board);
     }
 
