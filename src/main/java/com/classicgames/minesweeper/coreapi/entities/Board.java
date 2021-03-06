@@ -7,9 +7,11 @@ import lombok.Setter;
 @Setter
 public class Board {
 
+    private String id;
     private int size;
     private int numMines;
-    private int[][] matrix;
+    private boolean happy;
+    private Square[][] matrix;
 
     public Board(int size, int numMines) {
         this.size = size;
@@ -18,7 +20,8 @@ public class Board {
     }
 
     private void initialize() {
-        this.matrix = new int[size][size];
+        this.happy = true;
+        this.matrix = new Square[size][size];
     }
 
 }
