@@ -7,11 +7,13 @@ import lombok.Setter;
 @Setter
 public class Board {
 
+    private String id;
     private int size;
     private int numMines;
     private int[][] matrix;
 
-    public Board(int size, int numMines) {
+    public Board(String id, int size, int numMines) {
+        this.id = id;
         this.size = size;
         this.numMines = numMines;
         this.initialize();
