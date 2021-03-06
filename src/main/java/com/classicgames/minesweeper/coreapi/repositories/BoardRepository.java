@@ -6,4 +6,8 @@ public interface BoardRepository {
 
     Board create(int size, int numMines);
 
+    Board get(String id);
+
+    Board update(Board board);
+
 }

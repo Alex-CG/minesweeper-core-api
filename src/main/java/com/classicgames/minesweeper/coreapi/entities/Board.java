@@ -10,7 +10,7 @@ public class Board {
     private String id;
     private int size;
     private int numMines;
-    private int[][] matrix;
+    private Square[][] matrix;
 
     public Board(String id, int size, int numMines) {
         this.id = id;
@@ -20,7 +20,7 @@ public class Board {
     }
 
     private void initialize() {
-        this.matrix = new int[size][size];
+        this.matrix = new Square[size][size];
     }
 
 }
