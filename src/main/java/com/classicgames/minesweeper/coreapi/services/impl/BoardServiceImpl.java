@@ -20,8 +20,8 @@ public class BoardServiceImpl implements BoardService {
     @Autowired
     private BoardRepository repository;
 
-    private int[] dirRow = {-1, 0, 1, 1, 1, 0, -1, -1};
-    private int[] dirCol = {1, 1, 1, 0, -1, -1, -1, 0};
+    private final int[] dirRow = {-1, 0, 1, 1, 1, 0, -1, -1};
+    private final int[] dirCol = {1, 1, 1, 0, -1, -1, -1, 0};
 
     @Override
     public Board createBoard(int size, int numMines) {
