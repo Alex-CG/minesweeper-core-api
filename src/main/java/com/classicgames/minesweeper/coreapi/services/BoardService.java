@@ -6,6 +6,6 @@ public interface BoardService {
 
     Board createBoard(int size, int numMines);
 
-    Board flagSquare(int boardId, int posX, int posY);
+    Board flagSquare(String boardId, int posX, int posY);
 
 }

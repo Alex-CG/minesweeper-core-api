@@ -4,9 +4,7 @@ import com.classicgames.minesweeper.coreapi.entities.Board;
 import com.classicgames.minesweeper.coreapi.services.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/game")
@@ -21,6 +19,14 @@ public class GameResources {
     @PostMapping(path = "/new")
     public ResponseEntity newGame() {
         Board board = service.createBoard(DEFAULT_BOARD_SIZE, DEFAULT_NUM_MINES);
+        return ResponseEntity.ok(board);
+    }
+
+    @PatchMapping(path = "/{id}/flag/{x}/{y}")
+    public ResponseEntity flagSquare(@PathVariable("id") String id,
+                                     @PathVariable("x") Integer x,
+                                     @PathVariable("y") Integer y) {
+        Board board = service.flagSquare(id, x, y);
         return ResponseEntity.ok(board);
     }
 

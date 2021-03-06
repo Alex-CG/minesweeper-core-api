@@ -24,7 +24,7 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public Board flagSquare(int boardId, int posX, int posY) {
+    public Board flagSquare(String boardId, int posX, int posY) {
         return null;
     }
 
