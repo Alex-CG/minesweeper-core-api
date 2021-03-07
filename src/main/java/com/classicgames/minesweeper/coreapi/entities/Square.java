@@ -11,6 +11,8 @@ public class Square {
     private int value;
     private boolean opened;
     private FlagType flag = FlagType.NONE;
+    private int row;
+    private int col;
 
     public Square(ValueType type) {
         this.type = type;
