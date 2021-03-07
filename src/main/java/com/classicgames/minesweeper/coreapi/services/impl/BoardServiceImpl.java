@@ -80,7 +80,10 @@ public class BoardServiceImpl implements BoardService {
             int col = Utils.getRandomInt(0, board.getSize());
             // put a mine here if it does not contain a value
             if (Objects.isNull(board.getMatrix()[row][col])) {
-                board.getMatrix()[row][col] = new Square(ValueType.MINE);
+                Square mine = new Square(ValueType.MINE);
+                mine.setRow(row);
+                mine.setCol(col);
+                board.getMatrix()[row][col] = mine;
                 minesToPlace--;
             }
         }
@@ -93,6 +96,8 @@ public class BoardServiceImpl implements BoardService {
                 if (Objects.isNull(board.getMatrix()[row][col])) {
                     int totalMines = countMinesAround(board, row, col);
                     Square number = new Square(ValueType.NUMBER);
+                    number.setRow(row);
+                    number.setCol(col);
                     number.setValue(totalMines);
                     board.getMatrix()[row][col] = number;
                 }
