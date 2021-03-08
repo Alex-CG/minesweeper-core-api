@@ -19,7 +19,7 @@ public class GameUtilsTest {
     }
 
     @Test
-    public void canGenerateAUniqueUUID() {
+    public void canGenerateAUniqueUUIDTest() {
         for (int i = 0; i < 1000; i++) {
             UUID uuidX = UUID.randomUUID();
             Game gameX = new Game(10, 20);
