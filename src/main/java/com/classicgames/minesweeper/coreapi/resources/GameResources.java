@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/game")
+@RequestMapping("/games")
 public class GameResources {
 
     @Autowired
@@ -16,7 +16,7 @@ public class GameResources {
     private int DEFAULT_BOARD_SIZE = 10;
     private int DEFAULT_NUM_MINES = 20;
 
-    @PostMapping(path = "/new")
+    @PostMapping
     public ResponseEntity newGame() {
         Board board = service.createBoard(DEFAULT_BOARD_SIZE, DEFAULT_NUM_MINES);
         return ResponseEntity.ok(board);
