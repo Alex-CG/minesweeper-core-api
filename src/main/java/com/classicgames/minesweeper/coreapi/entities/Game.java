@@ -8,6 +8,7 @@ import lombok.Setter;
 public class Game {
 
     private String id;
+    private String name;
     private int size;
     private int numMines;
     private boolean happy;

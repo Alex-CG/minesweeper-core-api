@@ -13,6 +13,7 @@ public class Square {
     private FlagType flag = FlagType.NONE;
     private int row;
     private int col;
+    private boolean wrong;
 
     public Square(ValueType type) {
         this.type = type;
