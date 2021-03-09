@@ -1,9 +1,6 @@
 package com.classicgames.minesweeper.coreapi.services.impl;
 
-import com.classicgames.minesweeper.coreapi.entities.Game;
-import com.classicgames.minesweeper.coreapi.entities.FlagType;
-import com.classicgames.minesweeper.coreapi.entities.Square;
-import com.classicgames.minesweeper.coreapi.entities.ValueType;
+import com.classicgames.minesweeper.coreapi.entities.*;
 import com.classicgames.minesweeper.coreapi.repositories.GameRepository;
 import com.classicgames.minesweeper.coreapi.services.GameService;
 import static com.classicgames.minesweeper.coreapi.utils.BoardUtils.isValidAccess;
@@ -11,6 +8,8 @@ import com.classicgames.minesweeper.coreapi.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -61,8 +60,9 @@ public class GameServiceImpl implements GameService {
         if (FlagType.FLAG == currentFlag || FlagType.QUESTION == currentFlag) return game;
 
         if (isAMine(game.getBoard()[row][col])) {
-            revealAllBoard(game);
+            game.getBoard()[row][col].setWrong(true);
             game.setHappy(false);
+            revealAllMines(game);
         } else if (game.getBoard()[row][col].getValue() == 0) {
             revealAllAround(game, row, col);
         } else {
@@ -70,6 +70,33 @@ public class GameServiceImpl implements GameService {
         }
 
         return repository.update(game);
+    }
+
+    @Override
+    public Game getGame(String id) {
+        return repository.get(id);
+    }
+
+    @Override
+    public List<GameInfo> getAll() {
+        List<GameInfo> gamesInfo = new ArrayList<>();
+        List<Game> games = repository.getAll();
+
+        games.forEach(game -> {
+            if (Objects.nonNull(game.getName())) {
+                gamesInfo.add(new GameInfo(game.getId(), game.getName()));
+            }
+        });
+
+        return gamesInfo;
+    }
+
+    @Override
+    public List<GameInfo> saveGame(String id, GameInfo gameInfo) {
+        Game game = repository.get(id);
+        game.setName(gameInfo.getName());
+        repository.update(game);
+        return getAll();
     }
 
     private void placeMines(Game game) {
@@ -118,10 +145,12 @@ public class GameServiceImpl implements GameService {
         return mineCount;
     }
 
-    private void revealAllBoard(Game game) {
+    private void revealAllMines(Game game) {
         for (int row = 0; row < game.getSize(); row++) {
             for (int col = 0; col < game.getSize(); col++) {
-                game.getBoard()[row][col].setOpened(true);
+                if (isAMine(game.getBoard()[row][col])) {
+                    game.getBoard()[row][col].setOpened(true);
+                }
             }
         }
     }

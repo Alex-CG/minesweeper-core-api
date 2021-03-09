@@ -14,7 +14,7 @@ public class CorsConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/ms-api/**")
-                        .allowedMethods("POST", "PATCH", "OPTIONS");
+                        .allowedMethods("GET", "POST", "PATCH", "OPTIONS");
             }
         };
     }

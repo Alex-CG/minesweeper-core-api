@@ -5,9 +5,7 @@ import com.classicgames.minesweeper.coreapi.repositories.GameRepository;
 import com.classicgames.minesweeper.coreapi.utils.GameUtils;
 import org.springframework.stereotype.Repository;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 @Repository
 public class GameRepositoryImpl implements GameRepository {
@@ -25,6 +23,11 @@ public class GameRepositoryImpl implements GameRepository {
     @Override
     public Game get(String id) {
         return GAME_DATA.get(id);
+    }
+
+    @Override
+    public List<Game> getAll() {
+        return new ArrayList<>(GAME_DATA.values());
     }
 
     @Override
