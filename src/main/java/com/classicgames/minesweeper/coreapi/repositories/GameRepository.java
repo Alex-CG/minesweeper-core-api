@@ -14,4 +14,5 @@ public interface GameRepository {
 
     Game update(Game game);
 
+    void delete(String id);
 }

@@ -99,6 +99,12 @@ public class GameServiceImpl implements GameService {
         return getAll();
     }
 
+    @Override
+    public List<GameInfo> deleteGame(String id) {
+        repository.delete(id);
+        return getAll();
+    }
+
     private void placeMines(Game game) {
         int minesToPlace = game.getNumMines();
         while (minesToPlace > 0) {
