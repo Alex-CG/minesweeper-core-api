@@ -40,12 +40,15 @@ public class GameServiceImpl implements GameService {
         switch (currentFlag) {
             case FLAG:
                 game.getBoard()[row][col].setFlag(FlagType.QUESTION);
+                game.setNumFlags(game.getNumFlags() - 1);
                 break;
             case QUESTION:
                 game.getBoard()[row][col].setFlag(FlagType.NONE);
                 break;
             case NONE:
+                if (game.getNumFlags() == game.getNumMines()) return game;
                 game.getBoard()[row][col].setFlag(FlagType.FLAG);
+                game.setNumFlags(game.getNumFlags() + 1);
                 break;
         }
         return repository.update(game);
@@ -61,12 +64,14 @@ public class GameServiceImpl implements GameService {
 
         if (isAMine(game.getBoard()[row][col])) {
             game.getBoard()[row][col].setWrong(true);
-            game.setHappy(false);
+            game.setFace(FaceType.SAD);
             revealAllMines(game);
         } else if (game.getBoard()[row][col].getValue() == 0) {
             revealAllAround(game, row, col);
         } else {
             game.getBoard()[row][col].setOpened(true);
+            game.setOpenings(game.getOpenings() + 1);
+            hasWon(game);
         }
 
         return repository.update(game);
@@ -165,6 +170,8 @@ public class GameServiceImpl implements GameService {
         if (game.getBoard()[row][col].isOpened()) return;
 
         game.getBoard()[row][col].setOpened(true);
+        game.setOpenings(game.getOpenings() + 1);
+        hasWon(game);
 
         for (int i = 0; i < 8; i++) {
             int newRow = row + dirRow[i];
@@ -172,10 +179,14 @@ public class GameServiceImpl implements GameService {
             if (isValidAccess(newRow, newCol, game.getSize(), game.getSize())) {
                 if (game.getBoard()[row][col].getValue() == 0) {
                     revealAllAround(game, newRow, newCol);
-                } else {
-                    game.getBoard()[row][col].setOpened(true);
                 }
             }
+        }
+    }
+
+    private void hasWon(Game game) {
+        if (game.getSize() * game.getSize() - game.getOpenings() == game.getNumMines()) {
+            game.setFace(FaceType.EXCITED);
         }
     }
 

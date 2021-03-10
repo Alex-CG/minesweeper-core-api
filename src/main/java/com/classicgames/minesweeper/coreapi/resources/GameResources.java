@@ -18,8 +18,8 @@ public class GameResources {
     @Autowired
     private GameService service;
 
-    private final int DEFAULT_BOARD_SIZE = 10;
-    private final int DEFAULT_NUM_MINES = 20;
+    private final int DEFAULT_BOARD_SIZE = 5;
+    private final int DEFAULT_NUM_MINES = 6;
 
     @PostMapping
     public ResponseEntity<Game> newGame() {
