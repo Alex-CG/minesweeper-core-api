@@ -1,4 +1,4 @@
 server:
-  port: 8082
+  port: 5000
   servlet:
     context-path: /ms-api
