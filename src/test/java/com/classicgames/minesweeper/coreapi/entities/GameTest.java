@@ -16,7 +16,7 @@ public class GameTest {
         Assertions.assertEquals(20, game.getNumMines());
         Assertions.assertEquals(10, game.getBoard().length);
         Assertions.assertEquals(10, game.getBoard()[0].length);
-        Assertions.assertTrue(game.isHappy());
+        Assertions.assertEquals(FaceType.HAPPY, game.getFace());
         Assertions.assertNull(game.getId());
     }
 
@@ -31,7 +31,7 @@ public class GameTest {
         Assertions.assertEquals(40, game.getNumMines());
         Assertions.assertEquals(20, game.getBoard().length);
         Assertions.assertEquals(20, game.getBoard()[0].length);
-        Assertions.assertTrue(game.isHappy());
+        Assertions.assertEquals(FaceType.HAPPY, game.getFace());
         Assertions.assertNull(game.getId());
     }
 

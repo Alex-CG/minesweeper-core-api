@@ -11,8 +11,10 @@ public class Game {
     private String name;
     private int size;
     private int numMines;
-    private boolean happy;
+    private int numFlags;
+    private FaceType face;
     private Square[][] board;
+    private int openings;
 
     public Game(int size, int numMines) {
         this.size = size;
@@ -21,7 +23,7 @@ public class Game {
     }
 
     private void initialize() {
-        this.happy = true;
+        this.face = FaceType.HAPPY;
         this.board = new Square[size][size];
     }
 

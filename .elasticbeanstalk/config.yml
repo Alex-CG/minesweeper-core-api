@@ -1,0 +1,2 @@
+deploy:
+  artifact: build/libs/minesweeper-core-api-1.0.0.jar

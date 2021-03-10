@@ -18,4 +18,6 @@ public interface GameService {
     List<GameInfo> getAll();
 
     List<GameInfo> saveGame(String id, GameInfo gameInfo);
+
+    List<GameInfo> deleteGame(String id);
 }

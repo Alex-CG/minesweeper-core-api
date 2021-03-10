@@ -36,5 +36,10 @@ public class GameRepositoryImpl implements GameRepository {
         return game;
     }
 
+    @Override
+    public void delete(String id) {
+        GAME_DATA.remove(id);
+    }
+
 
 }
