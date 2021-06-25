@@ -7,12 +7,12 @@ orbs:
 jobs:
   print_hello:
     docker:
-      - images : circleci/node:13.8.0
+      - image : circleci/node:13.8.0
     steps:
       - run: echo hello
   print_world:
     docker:
-      - images : circleci/node:13.8.0
+      - image : circleci/node:13.8.0
     steps:
       - run: echo world
 # Orchestrate or schedule a set of jobs
